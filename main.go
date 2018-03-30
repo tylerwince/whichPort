@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	systray.Run(onReady, onExit)
+	systray.Run(onReady, nil)
 }
 
 func onReady() {
@@ -41,10 +41,6 @@ func onReady() {
 			}
 		}
 	}()
-}
-
-func onExit() {
-	// Cleaning stuff here.
 }
 
 func getCurrentProcesses() map[int32]*systray.MenuItem {
@@ -95,7 +91,7 @@ func getCurrentProcesses() map[int32]*systray.MenuItem {
 					Tooltip := "PID: " + pid
 					Disabled := false
 					Checked := false
-					a := &systray.MenuItem{ClickedCh: nil, Id: ID, Title: Title,
+					a := &systray.MenuItem{ClickedCh: nil, ID: ID, Title: Title,
 						Tooltip: Tooltip, Disabled: Disabled, Checked: Checked}
 					m[int32(idx)] = a
 					a.Update()
